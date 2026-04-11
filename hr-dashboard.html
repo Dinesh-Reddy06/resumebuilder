@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Dashboard - ResumeForge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Resume<span>Forge</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="templates.html">Templates</a></li>
+        <li class="nav-item"><a class="nav-link" href="builder.html">Builder</a></li>
+        <li class="nav-item"><a class="nav-link active" href="hr-dashboard.html">HR Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="company.html">Company Panel</a></li>
+      </ul>
+      <span class="role-badge" style="background:#f5a623; color:#1a1a2e">HR Team</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Dashboard Header with Stats -->
+<div class="dashboard-top">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 style="font-size:1.9rem; font-weight:700; margin-bottom:6px">HR Dashboard</h1>
+        <p style="color:rgba(255,255,255,0.65); margin:0">Review candidates, track their status, and manage the hiring pipeline</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <button class="btn-main" onclick="exportCSV()">&#8595; Export CSV</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="row g-3 mt-3">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num">24</div>
+          <div class="stat-label">Total Applications</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num" style="color:#28a745">8</div>
+          <div class="stat-label">Shortlisted</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num" style="color:#f5a623">11</div>
+          <div class="stat-label">Under Review</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num" style="color:#e94560">5</div>
+          <div class="stat-label">New Today</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Filter Bar -->
+<div style="background:white; border-bottom:1px solid #dee2e6; padding:20px 0">
+  <div class="container">
+    <div class="row g-3 align-items-end">
+      <div class="col-md-4">
+        <label class="form-label">Search candidates</label>
+        <div class="input-group search-group">
+          <input class="form-control" id="hr-search" placeholder="Name, skills, or role..." oninput="filterCandidates()">
+          <button class="btn" onclick="filterCandidates()">&#128269;</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Filter by skill</label>
+        <select class="form-select" id="skill-filter" onchange="filterCandidates()">
+          <option value="">All Skills</option>
+          <option value="python">Python</option>
+          <option value="javascript">JavaScript</option>
+          <option value="java">Java</option>
+          <option value="react">React</option>
+          <option value="sql">SQL</option>
+          <option value="machine learning">Machine Learning</option>
+          <option value="figma">Figma</option>
+          <option value="data analysis">Data Analysis</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Filter by status</label>
+        <select class="form-select" id="status-filter" onchange="filterCandidates()">
+          <option value="">All Statuses</option>
+          <option value="new">New</option>
+          <option value="review">Under Review</option>
+          <option value="shortlisted">Shortlisted</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn-dark-outline d-block w-100" onclick="clearFilters()">Clear</button>
+      </div>
+    </div>
+    <div class="mt-2">
+      <small class="text-muted" id="result-count">10 candidates</small>
+    </div>
+  </div>
+</div>
+
+<!-- Candidates Table -->
+<section class="pt-4 pb-5">
+  <div class="container">
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        <table class="table candidate-table mb-0">
+          <thead>
+            <tr>
+              <th>Candidate</th>
+              <th>Applied For</th>
+              <th>Skills</th>
+              <th>Experience</th>
+              <th>Status</th>
+              <th>Applied On</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="candidate-tbody">
+            <!-- Rows filled by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Resume View Modal -->
+<div class="modal fade" id="resumeModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Resume - <span id="modal-candidate-name"></span></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" style="padding:0">
+        <div class="resume-preview" style="box-shadow:none; min-height:auto">
+          <div class="preview-header" style="background:#1a1a2e">
+            <div id="modal-name" class="preview-name"></div>
+            <div id="modal-title" class="preview-title"></div>
+            <div id="modal-contact" class="preview-contact"></div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-section">
+              <div class="preview-section-title">Summary</div>
+              <div id="modal-summary" class="preview-summary"></div>
+            </div>
+            <div class="preview-section">
+              <div class="preview-section-title">Skills</div>
+              <div id="modal-skills" class="preview-skills-wrap"></div>
+            </div>
+            <div class="preview-section">
+              <div class="preview-section-title">Experience</div>
+              <div id="modal-experience"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-dark-outline" data-bs-dismiss="modal">Close</button>
+        <button class="btn-red" onclick="window.print()">Print Resume</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <div class="footer-brand mb-2">Resume<span>Forge</span></div>
+    <p style="font-size:0.82rem">Web Programming Lab &middot; Exp 6 &middot; PS3</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script>
+
+  // Sample candidate data
+  var candidates = [
+    { name: 'Ananya Sharma',  role: 'Software Engineer',   skills: ['Python','Machine Learning','SQL'],        exp: '2 years', status: 'new',         date: '09 Jul 2025', email: 'ananya@email.com',  phone: '+91 98001 11111', summary: 'B.Tech CSE graduate passionate about ML and data-driven solutions.' },
+    { name: 'Rohan Verma',    role: 'Frontend Developer',  skills: ['React','JavaScript','CSS'],               exp: '3 years', status: 'shortlisted',  date: '08 Jul 2025', email: 'rohan@email.com',   phone: '+91 98002 22222', summary: 'Frontend developer with strong focus on UI/UX and performance.' },
+    { name: 'Priya Nair',     role: 'Backend Engineer',    skills: ['Java','Spring Boot','Docker'],            exp: '4 years', status: 'review',       date: '07 Jul 2025', email: 'priya@email.com',   phone: '+91 98003 33333', summary: 'Senior backend engineer specializing in scalable microservices.' },
+    { name: 'Arjun Mehta',    role: 'UI/UX Designer',      skills: ['Figma','HTML','CSS'],                     exp: '1 year',  status: 'new',          date: '10 Jul 2025', email: 'arjun@email.com',   phone: '+91 98004 44444', summary: 'Creative designer who bridges design and code seamlessly.' },
+    { name: 'Sneha Patel',    role: 'Data Analyst',        skills: ['Data Analysis','Tableau','SQL'],          exp: '2 years', status: 'shortlisted',  date: '06 Jul 2025', email: 'sneha@email.com',   phone: '+91 98005 55555', summary: 'Data analyst skilled in dashboarding and business intelligence.' },
+    { name: 'Vikram Singh',   role: 'DevOps Engineer',     skills: ['Docker','Kubernetes','AWS'],              exp: '5 years', status: 'review',       date: '05 Jul 2025', email: 'vikram@email.com',  phone: '+91 98006 66666', summary: 'DevOps professional with deep cloud and containerization experience.' },
+    { name: 'Meera Krishnan', role: 'Software Engineer',   skills: ['Python','Django','REST API'],             exp: '2 years', status: 'new',          date: '10 Jul 2025', email: 'meera@email.com',   phone: '+91 98007 77777', summary: 'Full-stack Python developer with strong REST API design skills.' },
+    { name: 'Aditya Joshi',   role: 'Data Scientist',      skills: ['Machine Learning','Python','TensorFlow'], exp: '3 years', status: 'rejected',     date: '04 Jul 2025', email: 'aditya@email.com',  phone: '+91 98008 88888', summary: 'Data scientist specializing in predictive modeling and neural networks.' },
+    { name: 'Kavya Reddy',    role: 'Frontend Developer',  skills: ['Vue.js','JavaScript','GraphQL'],          exp: '2 years', status: 'review',       date: '03 Jul 2025', email: 'kavya@email.com',   phone: '+91 98009 99999', summary: 'Frontend developer who builds interactive, responsive web apps.' },
+    { name: 'Rahul Bose',     role: 'Backend Developer',   skills: ['Node.js','MongoDB','Express'],            exp: '3 years', status: 'shortlisted',  date: '02 Jul 2025', email: 'rahul@email.com',   phone: '+91 98010 10101', summary: 'Backend developer with strong expertise in Node.js and NoSQL.' }
+  ];
+
+  // Keep track of status changes (so they don't reset on re-render)
+  var statusMap = {};
+  for (var i = 0; i < candidates.length; i++) {
+    statusMap[i] = candidates[i].status;
+  }
+
+  // CSS class and label for each status
+  var statusInfo = {
+    new:         { cls: 'status-new',         label: 'New' },
+    review:      { cls: 'status-review',      label: 'Under Review' },
+    shortlisted: { cls: 'status-shortlisted', label: 'Shortlisted' },
+    rejected:    { cls: 'status-rejected',    label: 'Rejected' }
+  };
+
+  // Build the table rows from the candidates array
+  function renderTable() {
+    var tbody = document.getElementById('candidate-tbody');
+    tbody.innerHTML = '';
+
+    for (var i = 0; i < candidates.length; i++) {
+      var c = candidates[i];
+      var currentStatus = statusMap[i];
+      var info = statusInfo[currentStatus] || statusInfo.new;
+
+      // Get initials for avatar
+      var nameParts = c.name.split(' ');
+      var initials = nameParts[0][0] + (nameParts[1] ? nameParts[1][0] : '');
+
+      // Build skill badge HTML
+      var skillsHTML = '';
+      for (var j = 0; j < c.skills.length; j++) {
+        skillsHTML += '<span class="skill-badge">' + c.skills[j] + '</span>';
+      }
+
+      // Build status dropdown
+      var dropdownHTML = '<select class="form-select form-select-sm" style="width:auto; font-size:0.78rem" onchange="updateStatus(' + i + ', this.value, this.closest(\'tr\'))">';
+      var statusOptions = ['new','review','shortlisted','rejected'];
+      for (var k = 0; k < statusOptions.length; k++) {
+        var isSelected = currentStatus === statusOptions[k] ? ' selected' : '';
+        dropdownHTML += '<option value="' + statusOptions[k] + '"' + isSelected + '>' + statusInfo[statusOptions[k]].label + '</option>';
+      }
+      dropdownHTML += '</select>';
+
+      // Build the row
+      var row = document.createElement('tr');
+      row.className = 'candidate-row';
+      row.setAttribute('data-status', currentStatus);
+      row.innerHTML =
+        '<td>' +
+          '<div class="d-flex align-items-center gap-2">' +
+            '<div class="avatar" style="width:34px; height:34px; font-size:0.76rem">' + initials + '</div>' +
+            '<div>' +
+              '<div style="font-weight:600; font-size:0.88rem">' + c.name + '</div>' +
+              '<div style="font-size:0.76rem; color:#6c757d">' + c.email + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</td>' +
+        '<td style="font-size:0.86rem">' + c.role + '</td>' +
+        '<td>' + skillsHTML + '</td>' +
+        '<td style="font-size:0.86rem">' + c.exp + '</td>' +
+        '<td>' + dropdownHTML + '</td>' +
+        '<td style="font-size:0.8rem; color:#6c757d">' + c.date + '</td>' +
+        '<td>' +
+          '<div class="d-flex gap-1">' +
+            '<button class="btn-red" style="padding:4px 10px; font-size:0.76rem" onclick="viewResume(' + i + ')">View</button>' +
+            '<button class="btn-dark-outline" style="padding:4px 10px; font-size:0.76rem" onclick="quickShortlist(' + i + ')">&#9733;</button>' +
+          '</div>' +
+        '</td>';
+
+      tbody.appendChild(row);
+    }
+  }
+
+  // When status dropdown changes
+  function updateStatus(index, newStatus, row) {
+    statusMap[index] = newStatus;
+    row.setAttribute('data-status', newStatus);
+  }
+
+  // Shortlist button - sets status to shortlisted and re-renders
+  function quickShortlist(index) {
+    statusMap[index] = 'shortlisted';
+    renderTable();
+    filterCandidates();
+  }
+
+  // Open modal and show resume data for a candidate
+  function viewResume(index) {
+    var c = candidates[index];
+
+    document.getElementById('modal-candidate-name').textContent = c.name;
+    document.getElementById('modal-name').textContent = c.name;
+    document.getElementById('modal-title').textContent = c.role;
+    document.getElementById('modal-contact').innerHTML =
+      '<span>&#9993; ' + c.email + '</span>' +
+      '<span>&#128222; ' + c.phone + '</span>';
+    document.getElementById('modal-summary').textContent = c.summary;
+
+    // Skills
+    var skillsHTML = '';
+    for (var i = 0; i < c.skills.length; i++) {
+      skillsHTML += '<span class="preview-skill-tag">' + c.skills[i] + '</span>';
+    }
+    document.getElementById('modal-skills').innerHTML = skillsHTML;
+
+    // Experience
+    document.getElementById('modal-experience').innerHTML =
+      '<div class="preview-entry">' +
+        '<div class="preview-entry-title">' + c.role + '</div>' +
+        '<div class="preview-entry-sub">' + c.exp + ' of experience</div>' +
+      '</div>';
+
+    new bootstrap.Modal(document.getElementById('resumeModal')).show();
+  }
+
+  // Export table data as a CSV file
+  function exportCSV() {
+    var rows = [['Name','Role','Skills','Experience','Status','Applied On']];
+    for (var i = 0; i < candidates.length; i++) {
+      var c = candidates[i];
+      rows.push([
+        c.name,
+        c.role,
+        c.skills.join('; '),
+        c.exp,
+        statusMap[i] || c.status,
+        c.date
+      ]);
+    }
+
+    // Convert rows to CSV string
+    var csvText = '';
+    for (var j = 0; j < rows.length; j++) {
+      var rowStr = rows[j].map(function(cell) { return '"' + cell + '"'; }).join(',');
+      csvText += rowStr + '\n';
+    }
+
+    // Create a downloadable link and click it
+    var blob = new Blob([csvText], { type: 'text/csv' });
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'candidates.csv';
+    link.click();
+  }
+
+  // Render the table on page load
+  renderTable();
+
+</script>
+</body>
+</html>

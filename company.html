@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Panel - ResumeForge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Resume<span>Forge</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="templates.html">Templates</a></li>
+        <li class="nav-item"><a class="nav-link" href="builder.html">Builder</a></li>
+        <li class="nav-item"><a class="nav-link" href="hr-dashboard.html">HR Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active" href="company.html">Company Panel</a></li>
+      </ul>
+      <span class="role-badge" style="background:#0f3460">Company</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header with Stats -->
+<div class="dashboard-top">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 style="font-size:1.9rem; font-weight:700; margin-bottom:6px">Company Panel</h1>
+        <p style="color:rgba(255,255,255,0.65); margin:0">Post job openings, manage applicants, and find the right candidates</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <button class="btn-main" data-bs-toggle="modal" data-bs-target="#postJobModal">+ Post New Job</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="row g-3 mt-3">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num" id="job-count-display">4</div>
+          <div class="stat-label">Active Openings</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num" style="color:#28a745">10</div>
+          <div class="stat-label">Candidates Matched</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num" style="color:#f5a623">3</div>
+          <div class="stat-label">Interviews Scheduled</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-num" style="color:#e94560">24</div>
+          <div class="stat-label">Total Applicants</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<section class="pt-4 pb-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Left column: Job listings -->
+      <div class="col-lg-7">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 style="font-weight:700; margin:0">Active Job Openings</h4>
+          <small class="text-muted" id="jobs-label">4 openings</small>
+        </div>
+
+        <div id="posted-jobs">
+
+          <!-- Job 1 -->
+          <div class="job-card">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+              <div>
+                <h5 class="fw-bold mb-1" style="font-size:1rem">Frontend Developer</h5>
+                <div class="d-flex gap-2 flex-wrap mt-1">
+                  <span class="job-tag">Engineering</span>
+                  <span class="job-tag">Full-time</span>
+                  <span class="job-tag" style="color:#28a745; border-color:#28a745">Open</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <small class="text-muted">Posted: 05 Jul 2025</small>
+                <div class="mt-1">
+                  <button class="btn-red btn-sm" onclick="matchCandidates('Frontend Developer', 'React,JavaScript,CSS')">&#128269; Match Candidates</button>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-2" style="font-size:0.85rem; color:#555">Looking for a skilled frontend developer with 2+ years of React experience to join our product team.</p>
+            <div>
+              <span class="skill-badge">React</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">CSS</span>
+              <span class="skill-badge">Git</span>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="job-card">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+              <div>
+                <h5 class="fw-bold mb-1" style="font-size:1rem">Data Scientist</h5>
+                <div class="d-flex gap-2 flex-wrap mt-1">
+                  <span class="job-tag">Analytics</span>
+                  <span class="job-tag">Full-time</span>
+                  <span class="job-tag" style="color:#28a745; border-color:#28a745">Open</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <small class="text-muted">Posted: 03 Jul 2025</small>
+                <div class="mt-1">
+                  <button class="btn-red btn-sm" onclick="matchCandidates('Data Scientist', 'Python,Machine Learning,SQL,TensorFlow')">&#128269; Match Candidates</button>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-2" style="font-size:0.85rem; color:#555">Seeking a data scientist to build predictive models and drive data-informed decisions.</p>
+            <div>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">Machine Learning</span>
+              <span class="skill-badge">SQL</span>
+              <span class="skill-badge">TensorFlow</span>
+            </div>
+          </div>
+
+          <!-- Job 3 -->
+          <div class="job-card">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+              <div>
+                <h5 class="fw-bold mb-1" style="font-size:1rem">DevOps Engineer</h5>
+                <div class="d-flex gap-2 flex-wrap mt-1">
+                  <span class="job-tag">Infrastructure</span>
+                  <span class="job-tag">Full-time</span>
+                  <span class="job-tag" style="color:#28a745; border-color:#28a745">Open</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <small class="text-muted">Posted: 01 Jul 2025</small>
+                <div class="mt-1">
+                  <button class="btn-red btn-sm" onclick="matchCandidates('DevOps Engineer', 'Docker,Kubernetes,AWS,CI/CD')">&#128269; Match Candidates</button>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-2" style="font-size:0.85rem; color:#555">Join our infrastructure team to build and maintain cloud systems and CI/CD pipelines.</p>
+            <div>
+              <span class="skill-badge">Docker</span>
+              <span class="skill-badge">Kubernetes</span>
+              <span class="skill-badge">AWS</span>
+              <span class="skill-badge">CI/CD</span>
+            </div>
+          </div>
+
+          <!-- Job 4 -->
+          <div class="job-card">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+              <div>
+                <h5 class="fw-bold mb-1" style="font-size:1rem">UI/UX Designer</h5>
+                <div class="d-flex gap-2 flex-wrap mt-1">
+                  <span class="job-tag">Design</span>
+                  <span class="job-tag">Contract</span>
+                  <span class="job-tag" style="color:#28a745; border-color:#28a745">Open</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <small class="text-muted">Posted: 28 Jun 2025</small>
+                <div class="mt-1">
+                  <button class="btn-red btn-sm" onclick="matchCandidates('UI/UX Designer', 'Figma,HTML,CSS,JavaScript')">&#128269; Match Candidates</button>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-2" style="font-size:0.85rem; color:#555">Creative designer needed to craft user-centric interfaces and work with the engineering team.</p>
+            <div>
+              <span class="skill-badge">Figma</span>
+              <span class="skill-badge">HTML</span>
+              <span class="skill-badge">CSS</span>
+              <span class="skill-badge">JavaScript</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right column: Applicants + Department bars -->
+      <div class="col-lg-5">
+
+        <h4 style="font-weight:700; margin-bottom:14px">Recent Applicants</h4>
+        <div style="background:white; border-radius:10px; border:1px solid #dee2e6; overflow:hidden">
+          <div id="applicants-list">
+            <!-- Filled by JS below -->
+          </div>
+        </div>
+
+        <div class="mt-4 p-4" style="background:white; border-radius:10px; border:1px solid #dee2e6">
+          <h5 style="font-weight:700; margin-bottom:14px">Department Overview</h5>
+          <div id="dept-bars">
+            <!-- Filled by JS below -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Post Job Modal -->
+<div class="modal fade" id="postJobModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Post a New Job Opening</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Job Title *</label>
+            <input id="job-title-input" class="form-control" placeholder="e.g. Backend Engineer">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Department *</label>
+            <input id="department" class="form-control" placeholder="e.g. Engineering">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Job Type</label>
+            <select id="job-type" class="form-select">
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Contract">Contract</option>
+              <option value="Internship">Internship</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Required Skills <small class="text-muted">(comma separated)</small></label>
+            <input id="required-skills" class="form-control" placeholder="e.g. Python, Django, REST API">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Job Description</label>
+            <textarea id="job-desc" class="form-control" rows="3" placeholder="Describe the responsibilities and requirements..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-dark-outline" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn-red" onclick="postJob()">Post Job</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Candidate Match Modal -->
+<div class="modal fade" id="matchModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Matched Candidates - <span id="match-job-title"></span></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted mb-3" style="font-size:0.88rem">Candidates are ranked by skill match percentage</p>
+        <div id="match-results"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toast-msg">Job posted!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <div class="footer-brand mb-2">Resume<span>Forge</span></div>
+    <p style="font-size:0.82rem">Web Programming Lab &middot; Exp 6 &middot; PS3</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script>
+
+  // Sample recent applicants list
+  var applicants = [
+    { name: 'Ananya Sharma', role: 'Software Engineer',  status: 'new',         initials: 'AS' },
+    { name: 'Rohan Verma',   role: 'Frontend Developer', status: 'shortlisted', initials: 'RV' },
+    { name: 'Priya Nair',    role: 'Backend Engineer',   status: 'review',      initials: 'PN' },
+    { name: 'Arjun Mehta',   role: 'UI/UX Designer',     status: 'new',         initials: 'AM' },
+    { name: 'Sneha Patel',   role: 'Data Analyst',       status: 'shortlisted', initials: 'SP' },
+    { name: 'Vikram Singh',  role: 'DevOps Engineer',    status: 'review',      initials: 'VS' }
+  ];
+
+  // Map status values to CSS classes
+  var statusClasses = {
+    new:         'status-new',
+    review:      'status-review',
+    shortlisted: 'status-shortlisted',
+    rejected:    'status-rejected'
+  };
+
+  // Add applicant rows to the list
+  var applicantList = document.getElementById('applicants-list');
+  for (var i = 0; i < applicants.length; i++) {
+    var a = applicants[i];
+    var cls = statusClasses[a.status] || 'status-new';
+    applicantList.innerHTML +=
+      '<div class="d-flex align-items-center justify-content-between p-3 border-bottom">' +
+        '<div class="d-flex align-items-center gap-2">' +
+          '<div class="avatar" style="width:34px; height:34px; font-size:0.76rem">' + a.initials + '</div>' +
+          '<div>' +
+            '<div style="font-weight:600; font-size:0.86rem">' + a.name + '</div>' +
+            '<div style="font-size:0.76rem; color:#6c757d">' + a.role + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<span class="status-badge ' + cls + '">' + a.status + '</span>' +
+      '</div>';
+  }
+
+  // Department bar chart data
+  var departments = [
+    { name: 'Engineering',    count: 12, pct: 50, color: '#0f3460' },
+    { name: 'Analytics',      count: 5,  pct: 21, color: '#f5a623' },
+    { name: 'Design',         count: 4,  pct: 17, color: '#e94560' },
+    { name: 'Infrastructure', count: 3,  pct: 12, color: '#28a745' }
+  ];
+
+  // Add department progress bars
+  var deptContainer = document.getElementById('dept-bars');
+  for (var j = 0; j < departments.length; j++) {
+    var d = departments[j];
+    deptContainer.innerHTML +=
+      '<div class="mb-3">' +
+        '<div class="d-flex justify-content-between mb-1">' +
+          '<span style="font-size:0.85rem; font-weight:500">' + d.name + '</span>' +
+          '<span style="font-size:0.82rem; color:#6c757d">' + d.count + ' applicants</span>' +
+        '</div>' +
+        '<div style="background:#e9ecef; border-radius:4px; height:8px; overflow:hidden">' +
+          '<div style="background:' + d.color + '; width:' + d.pct + '%; height:100%; border-radius:4px; transition:width 0.5s"></div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  // Watch for new job cards being added and update the count
+  var observer = new MutationObserver(function() {
+    var count = document.querySelectorAll('.job-card').length;
+    document.getElementById('job-count-display').textContent = count;
+    document.getElementById('jobs-label').textContent = count + ' openings';
+  });
+  observer.observe(document.getElementById('posted-jobs'), { childList: true });
+
+</script>
+</body>
+</html>

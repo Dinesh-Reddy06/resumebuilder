@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Templates - ResumeForge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Resume<span>Forge</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="templates.html">Templates</a></li>
+        <li class="nav-item"><a class="nav-link" href="builder.html">Builder</a></li>
+        <li class="nav-item"><a class="nav-link" href="hr-dashboard.html">HR Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="company.html">Company Panel</a></li>
+      </ul>
+      <a href="builder.html" class="btn-main">Start Building</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div style="background:#1a1a2e; color:white; padding:48px 0 40px">
+  <div class="container">
+    <h1 style="font-size:2.2rem; font-weight:700; margin-bottom:8px">Choose a <span style="color:#e94560">Template</span></h1>
+    <p style="color:rgba(255,255,255,0.65); font-size:1rem; margin:0">Pick a design that matches your profession and personality</p>
+  </div>
+</div>
+
+<!-- Templates Grid -->
+<section class="page-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Template 1: Modern Dark -->
+      <div class="col-md-6 col-lg-3">
+        <div class="template-card selected" onclick="selectCard(this)">
+          <div class="template-preview-box" style="background:#1a1a2e">
+            <div class="mini-resume">
+              <div class="mini-line dark"></div>
+              <div class="mini-line colored"></div>
+              <div class="mini-line sm"></div>
+              <div style="height:1px; background:#eee; margin:6px 0"></div>
+              <div class="mini-line"></div>
+              <div class="mini-line sm"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5>Modern Dark</h5>
+              <span class="status-badge status-new">Popular</span>
+            </div>
+            <p>Bold dark header with red accents. Great for tech and design roles.</p>
+            <a href="builder.html?template=modern" class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 2: Minimal -->
+      <div class="col-md-6 col-lg-3">
+        <div class="template-card" onclick="selectCard(this)">
+          <div class="template-preview-box" style="background:#2d2d2d">
+            <div class="mini-resume">
+              <div class="mini-line" style="background:#2d2d2d; height:7px; width:65%"></div>
+              <div class="mini-line" style="background:#888; height:3px; width:45%"></div>
+              <div class="mini-line sm"></div>
+              <div style="height:1px; background:#eee; margin:6px 0"></div>
+              <div class="mini-line"></div>
+              <div class="mini-line sm"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5>Minimal</h5>
+              <span class="status-badge status-shortlisted">Clean</span>
+            </div>
+            <p>Simple charcoal look with gray accents. Ideal for finance and law.</p>
+            <a href="builder.html?template=minimal" class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 3: Executive -->
+      <div class="col-md-6 col-lg-3">
+        <div class="template-card" onclick="selectCard(this)">
+          <div class="template-preview-box" style="background:#0f3460">
+            <div class="mini-resume">
+              <div class="mini-line" style="background:#0f3460; height:7px; width:65%"></div>
+              <div class="mini-line" style="background:#f5a623; height:3px; width:45%"></div>
+              <div class="mini-line sm"></div>
+              <div style="height:1px; background:#eee; margin:6px 0"></div>
+              <div class="mini-line"></div>
+              <div class="mini-line sm"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5>Executive</h5>
+              <span class="status-badge status-review">Senior</span>
+            </div>
+            <p>Navy blue header with gold accents. Best for management roles.</p>
+            <a href="builder.html?template=executive" class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 4: Creative -->
+      <div class="col-md-6 col-lg-3">
+        <div class="template-card" onclick="selectCard(this)">
+          <div class="template-preview-box" style="background:#6c35de">
+            <div class="mini-resume">
+              <div class="mini-line" style="background:#6c35de; height:7px; width:65%"></div>
+              <div class="mini-line" style="background:#ff6b6b; height:3px; width:45%"></div>
+              <div class="mini-line sm"></div>
+              <div style="height:1px; background:#eee; margin:6px 0"></div>
+              <div class="mini-line"></div>
+              <div class="mini-line sm"></div>
+            </div>
+          </div>
+          <div class="template-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5>Creative</h5>
+              <span class="status-badge" style="background:rgba(108,53,222,0.1); color:#6c35de">Bold</span>
+            </div>
+            <p>Purple with coral accents. Perfect for design and media jobs.</p>
+            <a href="builder.html?template=creative" class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tips box -->
+    <div class="mt-5 p-4" style="background:white; border-radius:10px; border:1px solid #dee2e6">
+      <h4 style="font-weight:700; margin-bottom:1rem">Which Template Should I Pick?</h4>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <div class="d-flex gap-2">
+            <span style="color:#e94560; font-weight:700; flex-shrink:0">01</span>
+            <div><strong style="font-size:0.9rem">Tech / IT roles</strong> — Modern Dark or Creative work well with bold visual hierarchy.</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex gap-2">
+            <span style="color:#e94560; font-weight:700; flex-shrink:0">02</span>
+            <div><strong style="font-size:0.9rem">Finance / Legal</strong> — Minimal or Executive show professionalism and trust.</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex gap-2">
+            <span style="color:#e94560; font-weight:700; flex-shrink:0">03</span>
+            <div><strong style="font-size:0.9rem">Design / Media</strong> — Creative template lets your personality show through.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <div class="footer-brand mb-2">Resume<span>Forge</span></div>
+    <p style="font-size:0.82rem">Web Programming Lab &middot; Exp 6 &middot; PS3</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Highlight the clicked template card
+  function selectCard(card) {
+    var allCards = document.querySelectorAll('.template-card');
+    for (var i = 0; i < allCards.length; i++) {
+      allCards[i].classList.remove('selected');
+    }
+    card.classList.add('selected');
+  }
+</script>
+</body>
+</html>
