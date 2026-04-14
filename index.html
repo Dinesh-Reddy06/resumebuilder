@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeForge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">⚒ ResumeForge</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#templates">Templates</a></li>
+          <li class="nav-item"><a class="nav-link" href="#howto">How It Works</a></li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light px-3 ms-2" href="builder.html">Build Resume</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero d-flex align-items-center text-white text-center">
+    <div class="container">
+      <h1 class="display-3 hero-title">Forge Your Perfect Resume</h1>
+      <p class="lead mt-3 mb-4">Professional resume templates. Live preview. One-click PDF download.<br>Built for job seekers, freshers, and professionals.</p>
+      <a href="builder.html" class="btn btn-warning btn-lg px-5 py-3 fw-semibold">Start Building Free →</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-5" id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-md-6">
+          <h2 class="section-title">What is ResumeForge?</h2>
+          <p class="text-muted mt-3">ResumeForge is a free, browser-based resume builder that helps you create professional resumes in minutes. No sign-up needed. Just fill in your details, pick a template, and download your resume as PDF.</p>
+          <ul class="list-unstyled mt-3">
+            <li class="mb-2">✅ 4 professionally designed templates</li>
+            <li class="mb-2">✅ Live preview as you type</li>
+            <li class="mb-2">✅ One-click PDF export</li>
+            <li class="mb-2">✅ Fully responsive on mobile</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div class="row g-3 text-center">
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">4</h3>
+                <p class="mb-0 text-muted">Templates</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">Free</h3>
+                <p class="mb-0 text-muted">Forever</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">PDF</h3>
+                <p class="mb-0 text-muted">Export Ready</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">Live</h3>
+                <p class="mb-0 text-muted">Preview</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Templates Section -->
+  <section class="py-5 bg-light" id="templates">
+    <div class="container">
+      <h2 class="section-title text-center">Choose a Template</h2>
+      <p class="text-center text-muted mb-5">4 distinct formats — pick the one that fits your style and field.</p>
+      <div class="row g-4">
+
+        <!-- Template 1: Classic -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview classic-preview mx-auto mb-3">
+              <div class="tp-name"></div>
+              <div class="tp-line"></div>
+              <div class="tp-block"></div>
+              <div class="tp-block short"></div>
+              <div class="tp-block"></div>
+            </div>
+            <h5 class="fw-bold">Classic</h5>
+            <p class="text-muted small">Traditional top-down layout. Name and contact on top, clean sections below. Best for corporate roles.</p>
+            <a href="builder.html?template=classic" class="btn btn-outline-dark btn-sm mt-auto">Use Classic</a>
+          </div>
+        </div>
+
+        <!-- Template 2: Sidebar -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview sidebar-preview mx-auto mb-3">
+              <div class="tp-left-col"></div>
+              <div class="tp-right-col">
+                <div class="tp-block"></div>
+                <div class="tp-block short"></div>
+                <div class="tp-block"></div>
+              </div>
+            </div>
+            <h5 class="fw-bold">Sidebar</h5>
+            <p class="text-muted small">Two-column layout with a dark sidebar for skills and contact. Modern and eye-catching.</p>
+            <a href="builder.html?template=sidebar" class="btn btn-outline-dark btn-sm mt-auto">Use Sidebar</a>
+          </div>
+        </div>
+
+        <!-- Template 3: Minimal -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview minimal-preview mx-auto mb-3">
+              <div class="tp-topbar"></div>
+              <div class="tp-block mt-2"></div>
+              <div class="tp-block short"></div>
+              <div class="tp-block"></div>
+              <div class="tp-line-h"></div>
+              <div class="tp-block short"></div>
+            </div>
+            <h5 class="fw-bold">Minimal</h5>
+            <p class="text-muted small">Clean and sparse design with strong typography. Great for designers and creatives.</p>
+            <a href="builder.html?template=minimal" class="btn btn-outline-dark btn-sm mt-auto">Use Minimal</a>
+          </div>
+        </div>
+
+        <!-- Template 4: Timeline -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview timeline-preview mx-auto mb-3">
+              <div class="tp-header-box"></div>
+              <div class="tp-timeline-row">
+                <div class="tp-dot"></div><div class="tp-block-sm"></div>
+              </div>
+              <div class="tp-timeline-row">
+                <div class="tp-dot"></div><div class="tp-block-sm short"></div>
+              </div>
+              <div class="tp-timeline-row">
+                <div class="tp-dot"></div><div class="tp-block-sm"></div>
+              </div>
+            </div>
+            <h5 class="fw-bold">Timeline</h5>
+            <p class="text-muted small">Experience shown as a visual timeline. Perfect for candidates with rich work history.</p>
+            <a href="builder.html?template=timeline" class="btn btn-outline-dark btn-sm mt-auto">Use Timeline</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-5" id="howto">
+    <div class="container">
+      <h2 class="section-title text-center">How It Works</h2>
+      <div class="row g-4 mt-3 text-center">
+        <div class="col-md-4">
+          <div class="step-circle mx-auto mb-3">1</div>
+          <h5 class="fw-bold">Choose a Template</h5>
+          <p class="text-muted">Pick from 4 professionally designed resume formats that suit your career.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-circle mx-auto mb-3">2</div>
+          <h5 class="fw-bold">Fill Your Details</h5>
+          <p class="text-muted">Enter your personal info, work experience, education, and skills.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-circle mx-auto mb-3">3</div>
+          <h5 class="fw-bold">Download PDF</h5>
+          <p class="text-muted">See a live preview and download your polished resume as a PDF instantly.</p>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="builder.html" class="btn btn-dark btn-lg px-5">Get Started →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <p class="mb-0">© 2025 <strong>ResumeForge</strong> · Free Resume Builder · Built with Bootstrap 5</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
