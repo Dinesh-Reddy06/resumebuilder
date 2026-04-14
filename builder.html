@@ -1,307 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume Builder - ResumeForge</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeForge – Builder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <!-- html2pdf library for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link href="style.css" rel="stylesheet"/>
 </head>
-<body>
+<body class="builder-page">
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid px-4">
-    <a class="navbar-brand" href="index.html">Resume<span>Forge</span></a>
-    <div class="d-flex align-items-center gap-3 ms-auto">
-      <!-- This shows "Saved" briefly after auto-save -->
-      <span id="save-indicator" style="font-size:0.8rem; color:rgba(255,255,255,0.6); opacity:0; transition:opacity 0.4s">&#10003; Saved</span>
-      <button class="btn-outline-white" onclick="window.location.href='templates.html'" style="padding:6px 14px; font-size:0.82rem">&#127912; Templates</button>
-      <button id="download-btn" class="btn-main" onclick="downloadPDF()" style="padding:8px 20px; font-size:0.85rem">&#8595; Download PDF</button>
-      <button onclick="clearAllData()" title="Clear all data" style="background:none; border:none; color:rgba(255,255,255,0.5); font-size:1rem; cursor:pointer">&#128465;</button>
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">⚒ ResumeForge</a>
+      <div class="d-flex gap-2">
+        <select class="form-select form-select-sm" id="templateSelector" style="width:auto;">
+          <option value="classic">Classic</option>
+          <option value="sidebar">Sidebar</option>
+          <option value="minimal">Minimal</option>
+          <option value="timeline">Timeline</option>
+        </select>
+        <button class="btn btn-warning btn-sm fw-semibold" onclick="downloadPDF()">⬇ Download PDF</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Builder Layout -->
+  <div class="container-fluid mt-3 px-3">
+    <div class="row g-3">
+
+      <!-- LEFT: Form -->
+      <div class="col-lg-5">
+        <div class="form-panel p-3 rounded-3">
+
+          <!-- Personal Info -->
+          <h6 class="form-section-title">Personal Info</h6>
+          <div class="row g-2">
+            <div class="col-6">
+              <input type="text" class="form-control form-control-sm" id="fname" placeholder="Full Name" oninput="updatePreview()"/>
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control form-control-sm" id="jobtitle" placeholder="Job Title" oninput="updatePreview()"/>
+            </div>
+            <div class="col-6">
+              <input type="email" class="form-control form-control-sm" id="email" placeholder="Email" oninput="updatePreview()"/>
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control form-control-sm" id="phone" placeholder="Phone" oninput="updatePreview()"/>
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control form-control-sm" id="location" placeholder="City, Country" oninput="updatePreview()"/>
+            </div>
+            <div class="col-6">
+              <input type="text" class="form-control form-control-sm" id="linkedin" placeholder="LinkedIn URL" oninput="updatePreview()"/>
+            </div>
+            <div class="col-12">
+              <textarea class="form-control form-control-sm" id="summary" rows="2" placeholder="Professional Summary" oninput="updatePreview()"></textarea>
+            </div>
+          </div>
+
+          <!-- Experience -->
+          <h6 class="form-section-title mt-3">Work Experience</h6>
+          <div id="expContainer"></div>
+          <button class="btn btn-outline-secondary btn-sm mt-2" onclick="addExp()">+ Add Experience</button>
+
+          <!-- Education -->
+          <h6 class="form-section-title mt-3">Education</h6>
+          <div id="eduContainer"></div>
+          <button class="btn btn-outline-secondary btn-sm mt-2" onclick="addEdu()">+ Add Education</button>
+
+          <!-- Skills -->
+          <h6 class="form-section-title mt-3">Skills</h6>
+          <textarea class="form-control form-control-sm" id="skills" rows="2" placeholder="e.g. HTML, CSS, JavaScript, Python" oninput="updatePreview()"></textarea>
+
+          <!-- Projects -->
+          <h6 class="form-section-title mt-3">Projects <span class="text-muted fw-normal">(optional)</span></h6>
+          <textarea class="form-control form-control-sm" id="projects" rows="2" placeholder="Project name – description" oninput="updatePreview()"></textarea>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Live Preview -->
+      <div class="col-lg-7">
+        <div class="preview-wrapper">
+          <p class="text-muted small mb-1">Live Preview</p>
+          <div id="resumePreview" class="resume-preview-box">
+            <!-- injected by JS -->
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</nav>
 
-<!-- Two column layout: form on left, preview on right -->
-<div class="container-fluid p-0">
-  <div class="row g-0">
-
-    <!-- LEFT: Form -->
-    <div class="col-lg-5 form-panel">
-      <div class="p-4">
-
-        <!-- Header -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <div>
-            <h5 style="font-weight:700; margin:0; font-size:1.05rem">Resume Editor</h5>
-            <small class="text-muted">Fill in your details and watch the live preview update</small>
-          </div>
-          <button class="btn-dark-outline" data-bs-toggle="modal" data-bs-target="#templateModal" style="font-size:0.8rem; padding:6px 12px">&#127912; Change Template</button>
-        </div>
-
-        <!-- Tab buttons -->
-        <ul class="nav nav-pills builder-tabs flex-wrap gap-1 mb-4" id="formTabs">
-          <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-personal">Personal</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-education">Education</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-experience">Experience</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-skills">Skills</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-projects">Projects</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-achievements">Achievements</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-references">References</button></li>
-        </ul>
-
-        <!-- Tab content -->
-        <div class="tab-content">
-
-          <!-- Personal Info Tab -->
-          <div class="tab-pane fade show active" id="tab-personal">
-            <div class="section-label">Personal Information</div>
-            <div class="row g-3">
-              <div class="col-12">
-                <label class="form-label">Full Name *</label>
-                <input id="full-name" class="form-control" placeholder="e.g. Riya Sharma" oninput="updatePreview()">
-              </div>
-              <div class="col-12">
-                <label class="form-label">Professional Title</label>
-                <input id="job-title" class="form-control" placeholder="e.g. Software Engineer" oninput="updatePreview()">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Email</label>
-                <input id="email" class="form-control" type="email" placeholder="you@email.com" oninput="updatePreview()">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Phone</label>
-                <input id="phone" class="form-control" placeholder="+91 98765 43210" oninput="updatePreview()">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">City / Location</label>
-                <input id="location" class="form-control" placeholder="City, State" oninput="updatePreview()">
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">LinkedIn / Portfolio</label>
-                <input id="linkedin" class="form-control" placeholder="linkedin.com/in/yourname" oninput="updatePreview()">
-              </div>
-              <div class="col-12">
-                <label class="form-label">Career Summary</label>
-                <textarea id="summary" class="form-control" rows="4" placeholder="Write 3-4 sentences about your skills and what you are looking for..." oninput="updatePreview()"></textarea>
-              </div>
-            </div>
-          </div>
-
-          <!-- Education Tab -->
-          <div class="tab-pane fade" id="tab-education">
-            <div class="section-label">Education</div>
-            <div id="education-entries"></div>
-            <button class="btn-add-entry" onclick="addEntry('education-entries', educationTemplate)">+ Add Education</button>
-          </div>
-
-          <!-- Experience Tab -->
-          <div class="tab-pane fade" id="tab-experience">
-            <div class="section-label">Work Experience</div>
-            <div id="experience-entries"></div>
-            <button class="btn-add-entry" onclick="addEntry('experience-entries', experienceTemplate)">+ Add Experience</button>
-          </div>
-
-          <!-- Skills Tab -->
-          <div class="tab-pane fade" id="tab-skills">
-            <div class="section-label">Skills</div>
-            <label class="form-label">Type a skill and press Enter or comma to add it</label>
-            <div class="skill-input-box" id="skill-input-box">
-              <input type="text" id="skill-input" placeholder="e.g. Python, React, SQL...">
-            </div>
-            <small class="text-muted d-block mt-2">Click &#10005; on a tag to remove it</small>
-
-            <!-- Quick add buttons for common skills -->
-            <div class="mt-4">
-              <div class="section-label">Quick Add</div>
-              <div class="d-flex flex-wrap gap-2" id="quick-skills-wrap">
-                <!-- Added by JS below -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Projects Tab -->
-          <div class="tab-pane fade" id="tab-projects">
-            <div class="section-label">Projects</div>
-            <div id="project-entries"></div>
-            <button class="btn-add-entry" onclick="addEntry('project-entries', projectTemplate)">+ Add Project</button>
-          </div>
-
-          <!-- Achievements Tab -->
-          <div class="tab-pane fade" id="tab-achievements">
-            <div class="section-label">Achievements &amp; Certifications</div>
-            <div id="achievement-entries"></div>
-            <button class="btn-add-entry" onclick="addEntry('achievement-entries', achievementTemplate)">+ Add Achievement</button>
-          </div>
-
-          <!-- References Tab -->
-          <div class="tab-pane fade" id="tab-references">
-            <div class="section-label">References</div>
-            <div id="reference-entries"></div>
-            <button class="btn-add-entry" onclick="addEntry('reference-entries', referenceTemplate)">+ Add Reference</button>
-          </div>
-
-        </div>
-
-        <!-- Previous / Next tab navigation -->
-        <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-          <button class="btn-dark-outline" onclick="prevTab()">&larr; Previous</button>
-          <button class="btn-red" onclick="nextTab()">Next &rarr;</button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- RIGHT: Live Preview -->
-    <div class="col-lg-7 preview-panel">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h6 style="font-weight:600; margin:0">Live Preview</h6>
-        <button class="btn-red" onclick="downloadPDF()" style="font-size:0.82rem; padding:6px 14px">&#8595; Download PDF</button>
-      </div>
-
-      <!-- This is the div that gets converted to PDF -->
-      <div id="resume-preview" class="resume-preview">
-
-        <div class="preview-header">
-          <div id="prev-name" class="preview-name">Your Name</div>
-          <div id="prev-title" class="preview-title">Professional Title</div>
-          <div id="prev-contact" class="preview-contact"></div>
-        </div>
-
-        <div class="preview-body">
-
-          <div class="preview-section">
-            <div class="preview-section-title">Summary</div>
-            <div id="prev-summary" class="preview-summary"><em style="color:#aaa">Your summary will appear here...</em></div>
-          </div>
-
-          <div class="preview-section">
-            <div class="preview-section-title">Education</div>
-            <div id="prev-education"><em style="color:#aaa">Add education from the form...</em></div>
-          </div>
-
-          <div class="preview-section">
-            <div class="preview-section-title">Experience</div>
-            <div id="prev-experience"><em style="color:#aaa">Add work experience from the form...</em></div>
-          </div>
-
-          <div class="preview-section">
-            <div class="preview-section-title">Skills</div>
-            <div id="prev-skills" class="preview-skills-wrap"><em style="color:#aaa">Add skills from the Skills tab...</em></div>
-          </div>
-
-          <div class="preview-section">
-            <div class="preview-section-title">Projects</div>
-            <div id="prev-projects"><em style="color:#aaa">Add projects from the form...</em></div>
-          </div>
-
-          <div class="preview-section">
-            <div class="preview-section-title">Achievements</div>
-            <div id="prev-achievements"><em style="color:#aaa">Add achievements and certifications...</em></div>
-          </div>
-
-          <div class="preview-section">
-            <div class="preview-section-title">References</div>
-            <div id="prev-references"><em style="color:#aaa">Add references here (optional)...</em></div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Template Picker Modal -->
-<div class="modal fade" id="templateModal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Choose a Template</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-3">
-          <div class="col-6 col-md-3">
-            <div class="template-card" onclick="selectTemplate('modern', this)">
-              <div class="template-preview-box" style="background:#1a1a2e; min-height:100px"></div>
-              <div class="template-info"><h5>Modern</h5><p>Dark &amp; bold</p></div>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="template-card" onclick="selectTemplate('minimal', this)">
-              <div class="template-preview-box" style="background:#2d2d2d; min-height:100px"></div>
-              <div class="template-info"><h5>Minimal</h5><p>Clean &amp; simple</p></div>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="template-card" onclick="selectTemplate('executive', this)">
-              <div class="template-preview-box" style="background:#0f3460; min-height:100px"></div>
-              <div class="template-info"><h5>Executive</h5><p>Navy &amp; gold</p></div>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="template-card" onclick="selectTemplate('creative', this)">
-              <div class="template-preview-box" style="background:#6c35de; min-height:100px"></div>
-              <div class="template-info"><h5>Creative</h5><p>Purple &amp; coral</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="script.js"></script>
-<script>
-
-  // Move to next tab
-  function nextTab() {
-    var tabs = document.querySelectorAll('#formTabs .nav-link');
-    var activeTab = document.querySelector('#formTabs .nav-link.active');
-    var currentIndex = Array.from(tabs).indexOf(activeTab);
-    if (currentIndex < tabs.length - 1) {
-      new bootstrap.Tab(tabs[currentIndex + 1]).show();
-    }
-  }
-
-  // Move to previous tab
-  function prevTab() {
-    var tabs = document.querySelectorAll('#formTabs .nav-link');
-    var activeTab = document.querySelector('#formTabs .nav-link.active');
-    var currentIndex = Array.from(tabs).indexOf(activeTab);
-    if (currentIndex > 0) {
-      new bootstrap.Tab(tabs[currentIndex - 1]).show();
-    }
-  }
-
-  // Quick add skill buttons
-  var commonSkills = ['Python','JavaScript','Java','C++','React','Node.js','SQL','Git','HTML/CSS','Machine Learning','Data Analysis','Figma','Docker','Excel','Communication','Problem Solving'];
-  var quickWrap = document.getElementById('quick-skills-wrap');
-
-  for (var i = 0; i < commonSkills.length; i++) {
-    // Use a closure so the correct skill name is used in each button
-    (function(skill) {
-      var btn = document.createElement('button');
-      btn.textContent = skill;
-      btn.style.cssText = 'background:#f5f5f5; border:1.5px solid #dee2e6; color:#1a1a2e; padding:4px 12px; border-radius:20px; font-size:0.78rem; cursor:pointer';
-      btn.onclick = function() { addSkillTag(skill); };
-      quickWrap.appendChild(btn);
-    })(commonSkills[i]);
-  }
-
-  // If user came from templates.html with ?template=xxx, apply it
-  var urlParams = new URLSearchParams(window.location.search);
-  var templateParam = urlParams.get('template');
-  if (templateParam) {
-    document.addEventListener('DOMContentLoaded', function() {
-      applyTemplate(templateParam);
-    });
-  }
-
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

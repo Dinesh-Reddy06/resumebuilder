@@ -1,329 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResumeForge - Build Your Resume</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeForge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
 </head>
-
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Resume<span>Forge</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="builder.html">Builder</a></li>
 
-                </ul>
-                <div class="d-flex align-items-center gap-3">
-                    <a href="builder.html" class="btn-main">Start Building</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Left side text -->
-                <div class="col-lg-6">
-                    <div class="mb-3">
-                        <span
-                            style="background:rgba(233,69,96,0.2); color:#e94560; padding:4px 14px; border-radius:20px; font-size:0.82rem; font-weight:600">
-                            No sign-up required
-                        </span>
-                    </div>
-                    <h1>Build a Resume that <em>Actually Gets You Hired</em></h1>
-                    <p>A resume builder for job seekers, HR teams, and companies. Fill in your details, pick a design,
-                        and download your resume as PDF.</p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="builder.html" class="btn-main">Build My Resume</a>
-                        <a href="#template" class="btn-outline-white">View Templates</a>
-                    </div>
-                    <div class="mt-4 d-flex gap-4" style="font-size:0.85rem; color:rgba(255,255,255,0.6)">
-                        <span>Free to use</span>
-                        <span>PDF export</span>
-                        <span>4 templates</span>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;margin-left: 15vh;margin-top: 5vh;">
-                    <div class="card-body">
-                        <h5 class="card-title">Alex Johnson</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">
-                            <div style="font-size:0.75rem; color:#999; margin-bottom:12px">Software Engineer &middot;
-                                alex@email.com</div>
-                        </h6>
-                        <p style="color: rgba(0, 0, 0, 0.26);">-------------------------</p>
-                        <p style="color: rgba(0, 0, 0, 0.26);">-------------------------</p>
-                        <p style="color: rgba(0, 0, 0, 0.26);">-------------------------</p>
-                        <p style="color: rgba(0, 0, 0, 0.26);">-------------------------</p>
-                        <p style="color: rgba(0, 0, 0, 0.26);">-------------------------</p>
-                        <div class="mt-3 mb-1"
-                            style="font-size:0.7rem; color:#e94560; font-weight:600; text-transform:uppercase">
-                            Experience</div>
-                        <div class="mt-3 mb-1"
-                            style="font-size:0.7rem; color:#e94560; font-weight:600; text-transform:uppercase">Skills
-                        </div>
-                        <div class="d-flex gap-1 flex-wrap">
-                            <span
-                                style="background:#1a1a2e; color:white; padding:2px 8px; border-radius:20px; font-size:0.65rem">Python</span>
-                            <span
-                                style="background:#1a1a2e; color:white; padding:2px 8px; border-radius:20px; font-size:0.65rem">React</span>
-                            <span
-                                style="background:#1a1a2e; color:white; padding:2px 8px; border-radius:20px; font-size:0.65rem">Node.js</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- Who is this for -->
-    <section class="page-section" style="background:white">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-heading">Built for <span>Everyone</span></h2>
-                <p class="section-sub">Whether you're a job seeker, HR professional, or a company hiring talent</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-12" >
-                    <a href="builder.html" style="text-decoration:none">
-                        <div class="info-card text-center">
-                            <div class="icon">👤</div>
-                            <h4>Job Seekers</h4>
-                            <p>Fill in your details, pick a template, and download a professional resume as PDF in just
-                                a few minutes.</p>
-                            <div class="mt-3" style="color:#e94560; font-weight:600; font-size:0.88rem">Build Resume
-                                &rarr;</div>
-                        </div>
-                    </a>
-                </div>
-         
-
-
-            </div>
-        </div>
-    </section>
-    <!-- Features -->
-    <section class="page-section" style="background:#f5f5f5">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-5">
-                    <h2 class="section-heading">Everything you need to <span>land the job</span></h2>
-                    <p class="section-sub">Simple but powerful tools to create a great resume</p>
-                    <div class="d-flex flex-column gap-3">
-                        <div class="d-flex gap-3">
-                            <div
-                                style="width:36px;height:36px;background:rgba(233,69,96,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-                                ⚡</div>
-                            <div>
-                                <strong>Live Preview</strong>
-                                <p style="color:#6c757d;font-size:0.88rem;margin:2px 0 0;">Updates in real-time.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-3">
-                            <div
-                                style="width:36px;height:36px;background:rgba(233,69,96,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-                                💾</div>
-                            <div><strong>Auto Save</strong>
-                                <p style="color:#6c757d;font-size:0.88rem;margin:2px 0 0;">Saved automatically.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-3">
-                            <div
-                                style="width:36px;height:36px;background:rgba(233,69,96,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-                                📄</div>
-                            <div><strong>PDF Export</strong>
-                                <p style="color:#6c757d;font-size:0.88rem;margin:2px 0 0;">Download instantly.</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-3">
-                            <div
-                                style="width:36px;height:36px;background:rgba(233,69,96,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-                                🏷️</div>
-                            <div><strong>Skill Tags</strong>
-                                <p style="color:#6c757d;font-size:0.88rem;margin:2px 0 0;">Type & press Enter.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-4"><a href="builder.html" class="btn-main">Get Started Free</a></div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="info-card">
-                                <div class="icon">🎨</div>
-                                <h4>4 Templates</h4>
-                                <p>Modern, Minimal, Executive, and Creative designs to choose from.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="col-6">
-                            <div class="info-card">
-                                <div class="icon">📱</div>
-                                <h4>Responsive</h4>
-                                <p id="template">Works on mobile, tablet, and desktop without any issues.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- tempaltes -->
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-        <h1 style="font-size:2.2rem; font-weight:700; margin-bottom:8px">Choose a <span
-                style="color:#e94560">Template</span></h1>
-        <p style="color:rgba(255,255,255,0.65); font-size:1rem; margin:0">Pick a design that matches your profession and
-            personality</p>
+      <a class="navbar-brand fw-bold" href="#">⚒ ResumeForge</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#templates">Templates</a></li>
+          <li class="nav-item"><a class="nav-link" href="#howto">How It Works</a></li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light px-3 ms-2" href="builder.html">Build Resume</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <!-- Templates Grid -->
-    <section class="page-section">
-        <div class="container">
-            <div class="row g-4">
-                <!-- Template 1: Modern Dark -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="template-card selected" onclick="selectCard(this)">
-                        <div class="template-preview-box" style="background:#1a1a2e">
-                            <div class="mini-resume">
-                                <div class="mini-line dark"></div>
-                                <div class="mini-line colored"></div>
-                                <div class="mini-line sm"></div>
-                                <div style="height:1px; background:#eee; margin:6px 0"></div>
-                                <div class="mini-line"></div>
-                                <div class="mini-line sm"></div>
-                            </div>
-                        </div>
-                        <div class="template-info">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5>Modern Dark</h5>
-                                <span class="status-badge status-new">Popular</span>
-                            </div>
-                            <p>Bold dark header with red accents. Great for tech and design roles.</p>
-                            <a href="builder.html?template=modern"
-                                class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Template 2: Minimal -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="template-card" onclick="selectCard(this)">
-                        <div class="template-preview-box" style="background:#2d2d2d">
-                            <div class="mini-resume">
-                                <div class="mini-line" style="background:#2d2d2d; height:7px; width:65%"></div>
-                                <div class="mini-line" style="background:#888; height:3px; width:45%"></div>
-                                <div class="mini-line sm"></div>
-                                <div style="height:1px; background:#eee; margin:6px 0"></div>
-                                <div class="mini-line"></div>
-                                <div class="mini-line sm"></div>
-                            </div>
-                        </div>
-                        <div class="template-info">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5>Minimal</h5>
-                                <span class="status-badge status-shortlisted">Clean</span>
-                            </div>
-                            <p>Simple charcoal look with gray accents. Ideal for finance and law.</p>
-                            <a href="builder.html?template=minimal"
-                                class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Template 3: Executive -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="template-card" onclick="selectCard(this)">
-                        <div class="template-preview-box" style="background:#0f3460">
-                            <div class="mini-resume">
-                                <div class="mini-line" style="background:#0f3460; height:7px; width:65%"></div>
-                                <div class="mini-line" style="background:#f5a623; height:3px; width:45%"></div>
-                                <div class="mini-line sm"></div>
-                                <div style="height:1px; background:#eee; margin:6px 0"></div>
-                                <div class="mini-line"></div>
-                                <div class="mini-line sm"></div>
-                            </div>
-                        </div>
-                        <div class="template-info">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5>Executive</h5>
-                                <span class="status-badge status-review">Senior</span>
-                            </div>
-                            <p>Navy blue header with gold accents. Best for management roles.</p>
-                            <a href="builder.html?template=executive"
-                                class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Template 4: Creative -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="template-card" onclick="selectCard(this)">
-                        <div class="template-preview-box" style="background:#6c35de">
-                            <div class="mini-resume">
-                                <div class="mini-line" style="background:#6c35de; height:7px; width:65%"></div>
-                                <div class="mini-line" style="background:#ff6b6b; height:3px; width:45%"></div>
-                                <div class="mini-line sm"></div>
-                                <div style="height:1px; background:#eee; margin:6px 0"></div>
-                                <div class="mini-line"></div>
-                                <div class="mini-line sm"></div>
-                            </div>
-                        </div>
-                        <div class="template-info">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5>Creative</h5>
-                                <span class="status-badge"
-                                    style="background:rgba(108,53,222,0.1); color:#6c35de">Bold</span>
-                            </div>
-                            <p>Purple with coral accents. Perfect for design and media jobs.</p>
-                            <a href="builder.html?template=creative"
-                                class="btn-red d-block text-center mt-2 text-decoration-none">Use Template</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-5 p-3" style="background:white; border:1px solid #ccc;">
-                <h4>Which Template Should I Pick?</h4>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p><b>1. Tech / IT roles:</b> Use Modern Dark or Creative templates.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p><b>2. Finance / Legal:</b> Use Minimal or Executive templates.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p><b>3. Design / Media:</b> Use Creative template to show personality.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- CTA Banner -->
-    <section style="background:#1a1a2e; padding:64px 0; color:white; text-align:center">
-        <div class="container">
-            <h2 style="font-size:2.2rem; font-weight:700; margin-bottom:12px">Ready to build your <em
-                    style="color:#e94560">perfect resume?</em></h2>
-            <p style="color:rgba(255,255,255,0.65); font-size:1rem; margin-bottom:28px">Join thousands of job seekers
-                who got their dream jobs.</p>
-            <a href="builder.html" class="btn-main" style="font-size:1rem; padding:12px 36px">Start Building Now</a>
-        </div>
-    </section>
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="border-top pt-3 text-center"
-                style="border-color:rgba(255,255,255,0.1)!important; font-size:0.82rem">© 2026, Dinesh and team. All
-                rights reserved.</div>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-</body>
+  </nav>
 
+  <!-- Hero Section -->
+  <section class="hero d-flex align-items-center text-white text-center">
+    <div class="container">
+      <h1 class="display-3 hero-title">Forge Your Perfect Resume</h1>
+      <p class="lead mt-3 mb-4">Professional resume templates. Live preview. One-click PDF download.<br>Built for job seekers, freshers, and professionals.</p>
+      <a href="builder.html" class="btn btn-warning btn-lg px-5 py-3 fw-semibold">Start Building Free →</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-5" id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-md-6">
+          <h2 class="section-title">What is ResumeForge?</h2>
+          <p class="text-muted mt-3">ResumeForge is a free, browser-based resume builder that helps you create professional resumes in minutes. No sign-up needed. Just fill in your details, pick a template, and download your resume as PDF.</p>
+          <ul class="list-unstyled mt-3">
+            <li class="mb-2">✅ 4 professionally designed templates</li>
+            <li class="mb-2">✅ Live preview as you type</li>
+            <li class="mb-2">✅ One-click PDF export</li>
+            <li class="mb-2">✅ Fully responsive on mobile</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div class="row g-3 text-center">
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">4</h3>
+                <p class="mb-0 text-muted">Templates</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">Free</h3>
+                <p class="mb-0 text-muted">Forever</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">PDF</h3>
+                <p class="mb-0 text-muted">Export Ready</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card p-4 rounded-3">
+                <h3 class="display-5 fw-bold text-warning">Live</h3>
+                <p class="mb-0 text-muted">Preview</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Templates Section -->
+  <section class="py-5 bg-light" id="templates">
+    <div class="container">
+      <h2 class="section-title text-center">Choose a Template</h2>
+      <p class="text-center text-muted mb-5">4 distinct formats — pick the one that fits your style and field.</p>
+      <div class="row g-4">
+
+        <!-- Template 1: Classic -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview classic-preview mx-auto mb-3">
+              <div class="tp-name"></div>
+              <div class="tp-line"></div>
+              <div class="tp-block"></div>
+              <div class="tp-block short"></div>
+              <div class="tp-block"></div>
+            </div>
+            <h5 class="fw-bold">Classic</h5>
+            <p class="text-muted small">Traditional top-down layout. Name and contact on top, clean sections below. Best for corporate roles.</p>
+            <a href="builder.html?template=classic" class="btn btn-outline-dark btn-sm mt-auto">Use Classic</a>
+          </div>
+        </div>
+
+        <!-- Template 2: Sidebar -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview sidebar-preview mx-auto mb-3">
+              <div class="tp-left-col"></div>
+              <div class="tp-right-col">
+                <div class="tp-block"></div>
+                <div class="tp-block short"></div>
+                <div class="tp-block"></div>
+              </div>
+            </div>
+            <h5 class="fw-bold">Sidebar</h5>
+            <p class="text-muted small">Two-column layout with a dark sidebar for skills and contact. Modern and eye-catching.</p>
+            <a href="builder.html?template=sidebar" class="btn btn-outline-dark btn-sm mt-auto">Use Sidebar</a>
+          </div>
+        </div>
+
+        <!-- Template 3: Minimal -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview minimal-preview mx-auto mb-3">
+              <div class="tp-topbar"></div>
+              <div class="tp-block mt-2"></div>
+              <div class="tp-block short"></div>
+              <div class="tp-block"></div>
+              <div class="tp-line-h"></div>
+              <div class="tp-block short"></div>
+            </div>
+            <h5 class="fw-bold">Minimal</h5>
+            <p class="text-muted small">Clean and sparse design with strong typography. Great for designers and creatives.</p>
+            <a href="builder.html?template=minimal" class="btn btn-outline-dark btn-sm mt-auto">Use Minimal</a>
+          </div>
+        </div>
+
+        <!-- Template 4: Timeline -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="template-card card h-100 text-center p-3">
+            <div class="template-preview timeline-preview mx-auto mb-3">
+              <div class="tp-header-box"></div>
+              <div class="tp-timeline-row">
+                <div class="tp-dot"></div><div class="tp-block-sm"></div>
+              </div>
+              <div class="tp-timeline-row">
+                <div class="tp-dot"></div><div class="tp-block-sm short"></div>
+              </div>
+              <div class="tp-timeline-row">
+                <div class="tp-dot"></div><div class="tp-block-sm"></div>
+              </div>
+            </div>
+            <h5 class="fw-bold">Timeline</h5>
+            <p class="text-muted small">Experience shown as a visual timeline. Perfect for candidates with rich work history.</p>
+            <a href="builder.html?template=timeline" class="btn btn-outline-dark btn-sm mt-auto">Use Timeline</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-5" id="howto">
+    <div class="container">
+      <h2 class="section-title text-center">How It Works</h2>
+      <div class="row g-4 mt-3 text-center">
+        <div class="col-md-4">
+          <div class="step-circle mx-auto mb-3">1</div>
+          <h5 class="fw-bold">Choose a Template</h5>
+          <p class="text-muted">Pick from 4 professionally designed resume formats that suit your career.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-circle mx-auto mb-3">2</div>
+          <h5 class="fw-bold">Fill Your Details</h5>
+          <p class="text-muted">Enter your personal info, work experience, education, and skills.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="step-circle mx-auto mb-3">3</div>
+          <h5 class="fw-bold">Download PDF</h5>
+          <p class="text-muted">See a live preview and download your polished resume as a PDF instantly.</p>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="builder.html" class="btn btn-dark btn-lg px-5">Get Started →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <p class="mb-0">© 2025 <strong>ResumeForge</strong> · Free Resume Builder · Built with Bootstrap 5</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
