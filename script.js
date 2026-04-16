@@ -1,18 +1,23 @@
 // ============================================================
 //  HOME PAGE: shrink navbar on scroll
 // ============================================================
-const mainNav = document.getElementById('mainNav');
-if (mainNav) {
-  window.addEventListener('scroll', () => {
-    mainNav.style.padding = window.scrollY > 50 ? '4px 0' : '';
-  });
-}
+// const mainNav = document.getElementById('mainNav');
+// if (mainNav) {
+//   window.addEventListener('scroll', () => {
+//     mainNav.style.padding = window.scrollY > 50 ? '4px 0' : '';
+//   });
+// }
+
+
+
 
 // ============================================================
 //  BUILDER PAGE
 // ============================================================
 
 // --- State ---
+
+
 let expItems = [];
 let eduItems = [];
 
@@ -131,154 +136,140 @@ function skillsList(skills) {
     .map(s => `<span style="display:inline-block;background:#eee;border-radius:3px;padding:1px 7px;margin:2px;font-size:11px">${s}</span>`).join('');
 }
 
-function expSection(exp, headClass, itemTitleClass, itemSubClass, itemDescClass, wrapFn) {
-  return exp.filter(e => e.title || e.company).map(e => wrapFn(e)).join('');
-}
+// function expSection(exp, headClass, itemTitleClass, itemSubClass, itemDescClass, wrapFn) {
+//   return exp.filter(e => e.title || e.company).map(e => wrapFn(e)).join('');
+// }
 
 // ---- Classic Template ----
 function renderClassic(d) {
-  return `<div class="tpl-classic">
-    <div class="r-name">${d.name || 'Your Name'}</div>
-    <div class="r-title">${d.title || 'Your Job Title'}</div>
-    <div class="r-contact">${[d.email, d.phone, d.location, d.linkedin].filter(Boolean).join(' · ')}</div>
+  return `<div class="tpl-classic p-5">
+    <div class="r-name fs-4 fw-bold text-dark ">${d.name || 'Your Name'}</div>
+    <div class="r-title text-secondary fs-6 mb-1">${d.title || 'Your Job Title'}</div>
+    <div class="r-contact small text-muted border-bottom border-2 border-dark pb-2 mb-3">${[d.email, d.phone, d.location, d.linkedin].filter(Boolean).join(' · ')}</div>
     ${d.summary ? `<p style="font-size:12px;color:#444;margin-bottom:10px">${d.summary}</p>` : ''}
-    ${d.exp.length ? `<div class="r-section-head">Experience</div>
+    ${d.exp.length ? `<div class="r-section-head small text-uppercase fw-bold text-dark border-bottom mb-2 mt-3">Experience</div>
       ${d.exp.filter(e=>e.title||e.company).map(e=>`
         <div style="margin-bottom:10px">
-          <div class="r-item-title">${e.title}</div>
-          <div class="r-item-sub">${e.company}${e.duration?' · '+e.duration:''}${e.loc?' · '+e.loc:''}</div>
-          ${e.desc?`<div class="r-item-desc">${e.desc}</div>`:''}
+          <div class="r-item-title fw-bold small">${e.title}</div>
+          <div class="r-item-sub small text-muted">${e.company}${e.duration?' · '+e.duration:''}${e.loc?' · '+e.loc:''}</div>
+          ${e.desc?`<div class="r-item-desc small text-body mt-1">${e.desc}</div>`:''}
         </div>`).join('')}` : ''}
-    ${d.edu.length ? `<div class="r-section-head">Education</div>
+    ${d.edu.length ? `<div class="r-section-head small text-uppercase fw-bold text-dark border-bottom mb-2 mt-3">Education</div>
       ${d.edu.filter(e=>e.degree||e.institution).map(e=>`
         <div style="margin-bottom:8px">
-          <div class="r-item-title">${e.degree}</div>
-          <div class="r-item-sub">${e.institution}${e.year?' · '+e.year:''}</div>
+          <div class="r-item-title  fw-bold small">${e.degree}</div>
+          <div class="r-item-sub small text-muted">${e.institution}${e.year?' · '+e.year:''}</div>
         </div>`).join('')}` : ''}
-    ${d.skills ? `<div class="r-section-head">Skills</div><div>${skillsList(d.skills)}</div>` : ''}
-    ${d.projects ? `<div class="r-section-head">Projects</div><div style="font-size:12px;color:#444">${d.projects}</div>` : ''}
+    ${d.skills ? `<div class="r-section-head small text-uppercase fw-bold text-dark border-bottom mb-2 mt-3">Skills</div><div>${skillsList(d.skills)}</div>` : ''}
+    ${d.projects ? `<div class="r-section-head small text-uppercase fw-bold text-dark border-bottom mb-2 mt-3">Projects</div><div style="font-size:12px;color:#444">${d.projects}</div>` : ''}
   </div>`;
 }
 
 // ---- Sidebar Template ----
 function renderSidebar(d) {
-  return `<div class="tpl-sidebar">
-    <div class="r-sidebar">
-      <div class="r-name">${d.name || 'Your Name'}</div>
-      <div class="r-title">${d.title || ''}</div>
-      <div class="r-section-head" style="margin-top:20px">Contact</div>
+  return `<div class="tpl-sidebar d-flex small min-vh-100 ">
+    <div class="r-sidebar flex-shrink-0 bg-dark text-light px-3 py-4">
+      <div class="r-name fw-bold text-white lh-sm text-break">${d.name || 'Your Name'}</div>
+      <div class="r-title small text-white-50 mt-1 mb-0">${d.title || ''}</div>
+      <div class="r-section-head text-uppercase fw-bold text-warning border-bottom border-dark pb-1 mt-3 mb-2" style="margin-top:20px">Contact</div>
       ${d.email?`<p>${d.email}</p>`:''}
       ${d.phone?`<p>${d.phone}</p>`:''}
       ${d.location?`<p>${d.location}</p>`:''}
       ${d.linkedin?`<p style="word-break:break-all">${d.linkedin}</p>`:''}
-      ${d.skills?`<div class="r-section-head">Skills</div>
+      ${d.skills?`<div class="r-section-head text-uppercase fw-bold text-warning border-bottom border-dark pb-1 mt-3 mb-2">Skills</div>
         ${d.skills.split(',').map(s=>`<p style="margin:2px 0">${s.trim()}</p>`).join('')}`:''}
     </div>
-    <div class="r-main">
+    <div class="r-main flex-fill px-3 py-4">
       ${d.summary?`<p style="font-size:12px;color:#555;margin-bottom:10px">${d.summary}</p>`:''}
-      ${d.exp.length?`<div class="r-section-head">Experience</div>
+      ${d.exp.length?`<div class="r-section-head text-uppercase fw-bold text-dark border-bottom border-warning border-2 mt-3 mb-2">Experience</div>
         ${d.exp.filter(e=>e.title||e.company).map(e=>`
           <div style="margin-bottom:10px">
-            <div class="r-item-title">${e.title}</div>
-            <div class="r-item-sub">${e.company}${e.duration?' · '+e.duration:''}${e.loc?' · '+e.loc:''}</div>
-            ${e.desc?`<div class="r-item-desc">${e.desc}</div>`:''}
+            <div class="r-item-title fw-semibold small mb-0">${e.title}</div>
+            <div class="r-item-sub small text-muted mb-0">${e.company}${e.duration?' · '+e.duration:''}${e.loc?' · '+e.loc:''}</div>
+            ${e.desc?`<div class="r-item-desc small text-secondary mt-1 mb-0">${e.desc}</div>`:''}
           </div>`).join('')}`:''}
-      ${d.edu.length?`<div class="r-section-head">Education</div>
+      ${d.edu.length?`<div class="r-section-head text-uppercase fw-bold text-dark border-bottom border-warning border-2 mt-3 mb-2">Education</div>
         ${d.edu.filter(e=>e.degree||e.institution).map(e=>`
           <div style="margin-bottom:8px">
-            <div class="r-item-title">${e.degree}</div>
-            <div class="r-item-sub">${e.institution}${e.year?' · '+e.year:''}</div>
+            <div class="r-item-title fw-semibold small mb-0">${e.degree}</div>
+            <div class="r-item-sub small text-muted mb-0">${e.institution}${e.year?' · '+e.year:''}</div>
           </div>`).join('')}`:''}
-      ${d.projects?`<div class="r-section-head">Projects</div><div style="font-size:12px;color:#555">${d.projects}</div>`:''}
+      ${d.projects?`<div class="r-section-head text-uppercase fw-bold text-dark border-bottom border-warning border-2 mt-3 mb-2">Projects</div><div style="font-size:12px;color:#555">${d.projects}</div>`:''}
     </div>
   </div>`;
 }
 
 // ---- Minimal Template ----
 function renderMinimal(d) {
-  return `<div class="tpl-minimal">
-    <div class="r-header">
-      <div class="r-name">${d.name || 'Your Name'}</div>
-      <div class="r-title">${d.title || ''}</div>
-      <div class="r-contact">${[d.email, d.phone, d.location].filter(Boolean).join(' · ')}</div>
+  return `<div class="tpl-minimal p-5">
+    <div class="r-header border-start border-4 border-dark ps-3 mb-4">
+      <div class="r-name fw-bold mb-0">${d.name || 'Your Name'}</div>
+      <div class="r-title small text-muted mb-0">${d.title || ''}</div>
+      <div class="r-contact small text-muted mt-1 mb-0">${[d.email, d.phone, d.location].filter(Boolean).join(' · ')}</div>
     </div>
     ${d.summary?`<p style="font-size:12px;color:#555;margin-bottom:16px">${d.summary}</p>`:''}
-    ${d.exp.length?`<div class="r-section-head">Experience</div>
+    ${d.exp.length?`<div class="r-section-head text-uppercase text-muted mt-4 mb-2 small">Experience</div>
       ${d.exp.filter(e=>e.title||e.company).map(e=>`
         <div style="margin-bottom:12px">
-          <div class="r-item-title">${e.title} <span style="font-weight:normal;color:#aaa">@ ${e.company}</span></div>
-          <div class="r-item-sub">${[e.duration,e.loc].filter(Boolean).join(' · ')}</div>
-          ${e.desc?`<div class="r-item-desc">${e.desc}</div>`:''}
+          <div class="r-item-title fw-semibold mb-0">${e.title} <span style="font-weight:normal;color:#aaa">@ ${e.company}</span></div>
+          <div class="r-item-sub small text-muted mb-0">${[e.duration,e.loc].filter(Boolean).join(' · ')}</div>
+          ${e.desc?`<div class="r-item-desc small text-secondary mt-1 mb-0">${e.desc}</div>`:''}
         </div>`).join('')}`:''}
-    ${d.edu.length?`<div class="r-section-head">Education</div>
+    ${d.edu.length?`<div class="r-section-head text-uppercase text-muted mt-4 mb-2 small">Education</div>
       ${d.edu.filter(e=>e.degree||e.institution).map(e=>`
         <div style="margin-bottom:10px">
-          <div class="r-item-title">${e.degree}</div>
-          <div class="r-item-sub">${e.institution}${e.year?' · '+e.year:''}</div>
+          <div class="r-item-title fw-semibold mb-0">${e.degree}</div>
+          <div class="r-item-sub small text-muted mb-0">${e.institution}${e.year?' · '+e.year:''}</div>
         </div>`).join('')}`:''}
-    ${d.skills?`<div class="r-section-head">Skills</div><div style="margin-bottom:12px">${skillsList(d.skills)}</div>`:''}
-    ${d.projects?`<div class="r-section-head">Projects</div><div style="font-size:12px;color:#555">${d.projects}</div>`:''}
+    ${d.skills?`<div class="r-section-head text-uppercase text-muted mt-4 mb-2 small">Skills</div><div style="margin-bottom:12px">${skillsList(d.skills)}</div>`:''}
+    ${d.projects?`<div class="r-section-head text-uppercase text-muted mt-4 mb-2 small">Projects</div><div style="font-size:12px;color:#555">${d.projects}</div>`:''}
   </div>`;
 }
 
 // ---- Timeline Template ----
 function renderTimeline(d) {
   const tlItem = (e) => `
-    <div class="tl-item">
+    <div class="tl-item d-flex gap-2 mb-2 position-relative">
       <div style="position:relative">
-        <div class="tl-dot"></div>
-        <div class="tl-line"></div>
+        <div class="tl-dot bg-warning rounded-circle flex-shrink-0 position-relative mt-1" style="width:10px; height:10px;"></div>
+        <div class="tl-line position-absolute bg-body-secondary"></div>
       </div>
       <div>
-        <div class="r-item-title">${e.title || e.degree}</div>
-        <div class="r-item-sub">${(e.company||e.institution||'')}${(e.duration||e.year)?' · '+(e.duration||e.year):''}</div>
-        ${(e.desc)?`<div class="r-item-desc">${e.desc}</div>`:''}
+        <div class="r-item-title fw-semibold small mb-0">${e.title || e.degree}</div>
+        <div class="r-item-sub small text-muted mb-0">${(e.company||e.institution||'')}${(e.duration||e.year)?' · '+(e.duration||e.year):''}</div>
+        ${(e.desc)?`<div class="r-item-desc small text-secondary mt-1 mb-0">${e.desc}</div>`:''}
       </div>
     </div>`;
 
   return `<div class="tpl-timeline">
-    <div class="r-header">
-      <div class="r-name">${d.name || 'Your Name'}</div>
-      <div class="r-title">${d.title || ''}</div>
-      <div class="r-contact">${[d.email, d.phone, d.location].filter(Boolean).join(' · ')}</div>
+    <div class="r-header bg-dark text-white px-4 py-4">
+      <div class="r-name fw-bold mb-0">${d.name || 'Your Name'}</div>
+      <div class="r-title small text-white-50 mt-1 mb-0">${d.title || ''}</div>
+      <div class="r-contact small text-white-50 mt-2 mb-0">${[d.email, d.phone, d.location].filter(Boolean).join(' · ')}</div>
     </div>
-    <div class="r-body">
+    <div class="r-body px-4 py-4">
       ${d.summary?`<p style="font-size:12px;color:#555;margin-bottom:14px">${d.summary}</p>`:''}
-      ${d.exp.filter(e=>e.title||e.company).length?`<div class="r-section-head">Experience</div>
+      ${d.exp.filter(e=>e.title||e.company).length?`<div class="r-section-head text-uppercase fw-bold text-dark mt-3 mb-3">Experience</div>
         ${d.exp.filter(e=>e.title||e.company).map(tlItem).join('')}`:''}
-      ${d.edu.filter(e=>e.degree||e.institution).length?`<div class="r-section-head">Education</div>
+      ${d.edu.filter(e=>e.degree||e.institution).length?`<div class="r-section-head text-uppercase fw-bold text-dark mt-3 mb-3">Education</div>
         ${d.edu.filter(e=>e.degree||e.institution).map(tlItem).join('')}`:''}
-      ${d.skills?`<div class="r-section-head">Skills</div><div style="margin-bottom:10px">${skillsList(d.skills)}</div>`:''}
-      ${d.projects?`<div class="r-section-head">Projects</div><div style="font-size:12px;color:#555">${d.projects}</div>`:''}
+      ${d.skills?`<div class="r-section-head text-uppercase fw-bold text-dark mt-3 mb-3">Skills</div><div style="margin-bottom:10px">${skillsList(d.skills)}</div>`:''}
+      ${d.projects?`<div class="r-section-head text-uppercase fw-bold text-dark mt-3 mb-3">Projects</div><div style="font-size:12px;color:#555">${d.projects}</div>`:''}
     </div>
   </div>`;
 }
 
 // --- PDF Download ---
 function downloadPDF() {
-  const d = getData();
-  const tpl = document.getElementById('templateSelector')?.value || 'classic';
+    const d = getData();
+    const previewEl = document.getElementById('resumePreview');
+    if (!previewEl) return;
 
-  // Create a clean off-screen element without scaling
-  const el = document.createElement('div');
-  el.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:white';
-  el.innerHTML = renderTemplate(tpl, d);
-
-  // Inline the relevant styles for pdf rendering
-  el.querySelectorAll('[class]').forEach(node => {
-    const computed = window.getComputedStyle(node);
-    node.style.fontFamily = computed.fontFamily;
-    node.style.fontSize   = computed.fontSize;
-    node.style.color      = computed.color;
-  });
-
-  document.body.appendChild(el);
-
-  html2pdf().set({
-    margin: 0,
-    filename: (d.name || 'resume') + '.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
-  }).from(el).save().then(() => document.body.removeChild(el));
+    html2pdf().set({
+        margin: 0,
+        filename: (d.name || 'resume') + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
+    }).from(previewEl).save();
 }

@@ -10,7 +10,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <link href="style.css" rel="stylesheet"/>
 </head>
-<body class="builder-page">
+
+<body class="builder-page bg-body-secondary min-vh-100">
 
   <!-- Navbar -->
   <nav class="navbar navbar-dark bg-dark">
@@ -34,10 +35,12 @@
 
       <!-- LEFT: Form -->
       <div class="col-lg-5">
-        <div class="form-panel p-3 rounded-3">
+        <div class="form-panel p-3 rounded-3  bg-white border border-secondary overflow-auto ">
 
           <!-- Personal Info -->
           <h6 class="form-section-title">Personal Info</h6>
+
+          <fieldset>
           <div class="row g-2">
             <div class="col-6">
               <input type="text" class="form-control form-control-sm" id="fname" placeholder="Full Name" oninput="updatePreview()"/>
@@ -61,6 +64,7 @@
               <textarea class="form-control form-control-sm" id="summary" rows="2" placeholder="Professional Summary" oninput="updatePreview()"></textarea>
             </div>
           </div>
+          
 
           <!-- Experience -->
           <h6 class="form-section-title mt-3">Work Experience</h6>
@@ -85,9 +89,9 @@
 
       <!-- RIGHT: Live Preview -->
       <div class="col-lg-7">
-        <div class="preview-wrapper">
+        <div class="preview-wrapper position-sticky top-0 mt-5">
           <p class="text-muted small mb-1">Live Preview</p>
-          <div id="resumePreview" class="resume-preview-box">
+          <div id="resumePreview" class="resume-preview-box bg-white shadow overflow-hidden">
             <!-- injected by JS -->
           </div>
         </div>
