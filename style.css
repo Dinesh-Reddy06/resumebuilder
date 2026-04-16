@@ -1,131 +1,175 @@
 .section-title {
-  font-family: "Playfair Display", serif;
+    font-family: "Playfair Display", serif;
 }
+
 #mainNav {
-  backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
 }
+
+.builder-page {
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+#hov:hover {
+    color: black;
+    cursor: pointer;
+    background-color: antiquewhite;
+}
+
+
 .hero {
-  padding-top: 80px;
+    padding-top: 80px;
 }
+
 .hero-title {
-  font-family: "Playfair Display", serif;
+    font-family: "Playfair Display", serif;
 }
+
 .form-panel {
-  max-height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
 }
+
 .preview-wrapper {
-  top: 70px;
+    top: 70px;
 }
+
 .resume-preview-box {
-  min-height: 842px;
-  transform-origin: top left;
+    min-height: 842px;
+    transform-origin: top left;
 }
+
 .tpl-classic {
-  font-family: Georgia, serif;
+    font-family: Georgia, serif;
 }
+
 .tpl-classic .r-title {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 .tpl-classic .r-section-head {
-  letter-spacing: 1.5px;
+    letter-spacing: 1.5px;
 }
+
 .tpl-sidebar {
-  min-height: 842px;
-  font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+    min-height: 842px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
 }
+
 .tpl-sidebar .r-sidebar {
-  width: 200px;
+    width: 200px;
 }
+
 .tpl-sidebar .r-sidebar .r-section-head {
-  font-size: 10px;
-  letter-spacing: 1px;
+    font-size: 10px;
+    letter-spacing: 1px;
 }
+
 .tpl-sidebar .r-sidebar p,
 .tpl-sidebar .r-sidebar li {
-  font-size: 11px;
-  color: #bdc3c7;
+    font-size: 11px;
+    color: #bdc3c7;
 }
+
 .tpl-sidebar .r-main .r-section-head {
-  letter-spacing: 1px;
+    letter-spacing: 1px;
 }
+
 .tpl-minimal {
-  font-family: "DM Sans", sans-serif;
+    font-family: "DM Sans", sans-serif;
 }
+
 .tpl-minimal .r-name {
-  letter-spacing: -1px;
+    letter-spacing: -1px;
 }
+
 .tpl-minimal .r-section-head {
-  letter-spacing: 3px;
+    letter-spacing: 3px;
 }
+
 .tpl-timeline {
-  font-family: "DM Sans", sans-serif;
+    font-family: "DM Sans", sans-serif;
 }
+
 .tpl-timeline .r-section-head {
-  letter-spacing: 1.5px;
+    letter-spacing: 1.5px;
 }
+
 .tpl-timeline .tl-dot {
-  width: 10px;
-  height: 10px;
-  z-index: 1;
+    width: 10px;
+    height: 10px;
+    z-index: 1;
 }
+
 .tpl-timeline .tl-line {
-  left: 4px;
-  top: 14px;
-  bottom: -12px;
-  width: 2px;
+    left: 4px;
+    top: 14px;
+    bottom: -12px;
+    width: 2px;
 }
+
 @media (max-width: 991px) {
-  .resume-preview-box {
-    transform: scale(0.65);
-    transform-origin: top left;
-    width: 154%;
-  }
-  .preview-wrapper {
-    overflow: hidden;
-  }
+    .resume-preview-box {
+        transform: scale(0.65);
+        transform-origin: top left;
+        width: 154%;
+    }
+
+    .preview-wrapper {
+        overflow: hidden;
+    }
 }
+
 @media (max-width: 576px) {
-  .resume-preview-box {
-    transform: scale(0.42);
-    transform-origin: top left;
-    width: 238%;
-  }
+    .resume-preview-box {
+        transform: scale(0.42);
+        transform-origin: top left;
+        width: 238%;
+    }
 }
+
 .feature-card {
-  background: #ffffff;
-  color: #000;
-  transition: all 0.4s ease;
-  border: 1px solid #dee2e6;
+    background: #ffffff;
+    color: #000;
+    transition: all 0.4s ease;
+    border: 1px solid #dee2e6;
 }
 
 .feature-card:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(42, 123, 155, 1) 0%,
-    rgba(87, 199, 133, 1) 50%,
-    rgba(237, 221, 83, 1) 100%
-  );
-  color: #fff;
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg,
+            rgba(42, 123, 155, 1) 0%,
+            rgba(87, 199, 133, 1) 50%,
+            rgba(237, 221, 83, 1) 100%);
+    color: #fff;
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card:hover p,
 .feature-card:hover h5 {
-  color: #fff;
+    color: #fff;
 }
 
 .feature-icon {
-  width: 60px;
-  height: 60px;
+    width: 60px;
+    height: 60px;
 }
 
 .hero-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: black;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: black;
 }
+
 .lead {
-  color: black;
+    color: black;
+}
+
+.template {
+    width: 400px;
+    /* small preview size */
+    height: 450px;
+    /* keep aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

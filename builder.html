@@ -1,106 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ResumeForge – Builder</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
-  <!-- html2pdf library for PDF export -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <link href="style.css" rel="stylesheet"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResumeForge – Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <!-- html2pdf library for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="style.css" rel="stylesheet" />
 </head>
 
 <body class="builder-page bg-body-secondary min-vh-100">
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">⚒ ResumeForge</a>
-      <div class="d-flex gap-2">
-        <select class="form-select form-select-sm" id="templateSelector" style="width:auto;">
-          <option value="classic">Classic</option>
-          <option value="sidebar">Sidebar</option>
-          <option value="minimal">Minimal</option>
-          <option value="timeline">Timeline</option>
-        </select>
-        <button class="btn btn-warning btn-sm fw-semibold" onclick="downloadPDF()">⬇ Download PDF</button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Builder Layout -->
-  <div class="container-fluid mt-3 px-3">
-    <div class="row g-3">
-
-      <!-- LEFT: Form -->
-      <div class="col-lg-5">
-        <div class="form-panel p-3 rounded-3  bg-white border border-secondary overflow-auto ">
-
-          <!-- Personal Info -->
-          <h6 class="form-section-title">Personal Info</h6>
-
-          <fieldset>
-          <div class="row g-2">
-            <div class="col-6">
-              <input type="text" class="form-control form-control-sm" id="fname" placeholder="Full Name" oninput="updatePreview()"/>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">⚒ ResumeForge</a>
+            <div class="d-flex gap-2">
+                <select class="form-select form-select-sm" id="templateSelector" style="width:auto;">
+                    <option value="classic">Classic</option>
+                    <option value="sidebar">Sidebar</option>
+                    <option value="minimal">Minimal</option>
+                    <option value="timeline">Timeline</option>
+                </select>
+                <button class="btn btn-warning btn-sm fw-semibold" onclick="downloadPDF()">⬇ Download PDF</button>
             </div>
-            <div class="col-6">
-              <input type="text" class="form-control form-control-sm" id="jobtitle" placeholder="Job Title" oninput="updatePreview()"/>
-            </div>
-            <div class="col-6">
-              <input type="email" class="form-control form-control-sm" id="email" placeholder="Email" oninput="updatePreview()"/>
-            </div>
-            <div class="col-6">
-              <input type="text" class="form-control form-control-sm" id="phone" placeholder="Phone" oninput="updatePreview()"/>
-            </div>
-            <div class="col-6">
-              <input type="text" class="form-control form-control-sm" id="location" placeholder="City, Country" oninput="updatePreview()"/>
-            </div>
-            <div class="col-6">
-              <input type="text" class="form-control form-control-sm" id="linkedin" placeholder="LinkedIn URL" oninput="updatePreview()"/>
-            </div>
-            <div class="col-12">
-              <textarea class="form-control form-control-sm" id="summary" rows="2" placeholder="Professional Summary" oninput="updatePreview()"></textarea>
-            </div>
-          </div>
-          
+        </div>
+    </nav>
 
-          <!-- Experience -->
-          <h6 class="form-section-title mt-3">Work Experience</h6>
-          <div id="expContainer"></div>
-          <button class="btn btn-outline-secondary btn-sm mt-2" onclick="addExp()">+ Add Experience</button>
+    <!-- Main Builder Layout -->
+    <div class="container-fluid mt-3 px-3">
+        <div class="row g-3">
 
-          <!-- Education -->
-          <h6 class="form-section-title mt-3">Education</h6>
-          <div id="eduContainer"></div>
-          <button class="btn btn-outline-secondary btn-sm mt-2" onclick="addEdu()">+ Add Education</button>
+            <!-- LEFT: Form -->
+            <div class="col-lg-5">
+                <div class="form-panel p-3 rounded-3  bg-white border border-secondary overflow-auto ">
 
-          <!-- Skills -->
-          <h6 class="form-section-title mt-3">Skills</h6>
-          <textarea class="form-control form-control-sm" id="skills" rows="2" placeholder="e.g. HTML, CSS, JavaScript, Python" oninput="updatePreview()"></textarea>
+                    <!-- Personal Info -->
+                    <h6 class="form-section-title">Personal Info</h6>
 
-          <!-- Projects -->
-          <h6 class="form-section-title mt-3">Projects <span class="text-muted fw-normal">(optional)</span></h6>
-          <textarea class="form-control form-control-sm" id="projects" rows="2" placeholder="Project name – description" oninput="updatePreview()"></textarea>
+                    <fieldset>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <input type="text" class="form-control form-control-sm" id="fname"
+                                    placeholder="Full Name" oninput="updatePreview()" />
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control form-control-sm" id="jobtitle"
+                                    placeholder="Job Title" oninput="updatePreview()" />
+                            </div>
+                            <div class="col-6">
+                                <input type="email" class="form-control form-control-sm" id="email" placeholder="Email"
+                                    oninput="updatePreview()" />
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control form-control-sm" id="phone" placeholder="Phone"
+                                    oninput="updatePreview()" />
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control form-control-sm" id="location"
+                                    placeholder="City, Country" oninput="updatePreview()" />
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control form-control-sm" id="linkedin"
+                                    placeholder="LinkedIn URL" oninput="updatePreview()" />
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control form-control-sm" id="summary" rows="2"
+                                    placeholder="Professional Summary" oninput="updatePreview()"></textarea>
+                            </div>
+                        </div>
+
+
+                        <!-- Experience -->
+                        <h6 class="form-section-title mt-3">Work Experience</h6>
+                        <div id="expContainer"></div>
+                        <button class="btn btn-outline-secondary btn-sm mt-2" onclick="addExp()">+ Add
+                            Experience</button>
+
+                        <!-- Education -->
+                        <h6 class="form-section-title mt-3">Education</h6>
+                        <div id="eduContainer"></div>
+                        <button class="btn btn-outline-secondary btn-sm mt-2" onclick="addEdu()">+ Add
+                            Education</button>
+
+                        <!-- Skills -->
+                        <h6 class="form-section-title mt-3">Skills</h6>
+                        <textarea class="form-control form-control-sm" id="skills" rows="2"
+                            placeholder="e.g. HTML, CSS, JavaScript, Python" oninput="updatePreview()"></textarea>
+
+                        <!-- Projects -->
+                        <h6 class="form-section-title mt-3">Projects <span
+                                class="text-muted fw-normal">(optional)</span></h6>
+                        <textarea class="form-control form-control-sm" id="projects" rows="2"
+                            placeholder="Project name – description" oninput="updatePreview()"></textarea>
+
+                </div>
+            </div>
+
+            <!-- RIGHT: Live Preview -->
+            <div class="col-lg-7">
+                <div class="preview-wrapper position-sticky top-0 mt-5">
+                    <p class="text-muted small mb-1">Live Preview</p>
+                    <div id="resumePreview" class="resume-preview-box bg-white shadow overflow-hidden">
+                        <!-- injected by JS -->
+                    </div>
+                </div>
+            </div>
 
         </div>
-      </div>
-
-      <!-- RIGHT: Live Preview -->
-      <div class="col-lg-7">
-        <div class="preview-wrapper position-sticky top-0 mt-5">
-          <p class="text-muted small mb-1">Live Preview</p>
-          <div id="resumePreview" class="resume-preview-box bg-white shadow overflow-hidden">
-            <!-- injected by JS -->
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
