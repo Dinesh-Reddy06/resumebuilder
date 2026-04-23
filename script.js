@@ -270,10 +270,6 @@ function submitToHR(d) {
     localStorage.setItem('rf_applicants', JSON.stringify(applicants));
 }
 
-
-
-
-
 // login page
 function showTab(tab) {
     document.getElementById('signinForm').style.display = tab === 'signin' ? '' : 'none';
@@ -321,8 +317,6 @@ if (window.location.pathname.includes('login.html')) {
     }
 }
 
-
-
 // dasboard
 let allApplicants = [], currentSearch = '';
 
@@ -341,7 +335,12 @@ if (window.location.pathname.includes('hr-dashboard.html')) {
 
 function loadApplicants() {
     allApplicants = JSON.parse(localStorage.getItem('rf_applicants') || '[]');
-    renderTable(allApplicants, currentSearch);
+
+    if (currentSearch) {
+        doSearch();   // ✅ keep filtered results
+    } else {
+        renderTable(allApplicants, '');
+    }
 }
 
 function renderTable(list, searchTerm) {
